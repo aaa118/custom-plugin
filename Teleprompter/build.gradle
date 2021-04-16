@@ -8,8 +8,8 @@ apply plugin: 'custom-plugin'
 //apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+//    compileSdkVersion 30
+//    buildToolsVersion "30.0.3"
 
     signingConfigs {
         config {
@@ -22,8 +22,8 @@ android {
 
     defaultConfig {
         applicationId "com.adi.teleprompter"
-        minSdkVersion 23
-        targetSdkVersion 30
+//        minSdkVersion 23
+//        targetSdkVersion 30
         versionCode 1
 //        versionCode semanticVersion.version.versionCode
         versionName "1.0"

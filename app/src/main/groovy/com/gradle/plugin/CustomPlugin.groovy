@@ -37,14 +37,11 @@ class CustomPlugin implements Plugin<Project> {
             major += 1
             int version = major * 100000
 
-
-
             buildNumber += 1
             String newBuildNumberStr = String.format("%03d", buildNumber)
             String newVersionNumberStr = String.format("%03d", version)
 
             versionsProperties.setProperty("${versionPrefix}_code", newVersionNumberStr)
-//            versionsProperties.setProperty("${versionPrefix}_code", "${version.versionCode}")
             versionsProperties.setProperty("${versionPrefix}_build", newBuildNumberStr)
 
             versionsProperties.store(versionsFile.newWriter(), null)

@@ -2,7 +2,7 @@ package com.gradle.plugin
 
 import org.gradle.api.Project
 
-class SemanticVersion {
+class SVersion {
     final def versionMajor
     final def versionMinor
     final def versionPatch
@@ -21,7 +21,7 @@ class SemanticVersion {
 
     private static def buildNumber
 
-    SemanticVersion(Project project, int versionMajor, int versionMinor, int versionPatch, boolean
+    SVersion(Project project, int versionMajor, int versionMinor, int versionPatch, boolean
             isRelease) {
         this.versionMajor = versionMajor
         this.versionMinor = versionMinor
