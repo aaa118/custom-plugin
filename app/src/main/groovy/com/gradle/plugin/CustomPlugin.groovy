@@ -33,9 +33,17 @@ class CustomPlugin implements Plugin<Project> {
             final def currentVersionCode = versionsProperties.getProperty("${versionPrefix}_code", "100000")
             final def currentBuildNumber = versionsProperties.getProperty("${versionPrefix}_build", 1.toString())
             int buildNumber = currentBuildNumber.toInteger()
-            int major = currentVersionCode.toInteger() / 100000
-            major += 1
-            int version = major * 100000
+
+            int version
+
+
+            if (gitBranch == 'main') {
+                int major = currentVersionCode.toInteger() / 100000
+                major += 1
+                version = major * 100000
+            } else {
+                version = currentVersionCode.toInteger()
+            }
 
             buildNumber += 1
             String newBuildNumberStr = String.format("%03d", buildNumber)
@@ -46,6 +54,15 @@ class CustomPlugin implements Plugin<Project> {
 
             versionsProperties.store(versionsFile.newWriter(), null)
         }
+    }
+
+    def gitBranch() {
+        def branch = ""
+        def proc = "git rev-parse --abbrev-ref HEAD".execute()
+        proc.in.eachLine { line -> branch = line }
+        proc.err.eachLine { line -> println line }
+        proc.waitFor()
+        branch
     }
 
 

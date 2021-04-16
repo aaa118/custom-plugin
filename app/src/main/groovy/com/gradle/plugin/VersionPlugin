@@ -34,7 +34,11 @@ class VersionPlugin implements Plugin<Project> {
 //            } else {
 //            }
 
+            if (gitBranch() == 'main') {
                 buildNumber += 1
+            } else {
+                buildNumber += 2
+            }
             String newBuildNumberStr = String.format("%03d", buildNumber)
 
 //            versionsProperties.setProperty("${versionPrefix}_code", "${version.versionCode}")
@@ -42,6 +46,15 @@ class VersionPlugin implements Plugin<Project> {
 
             versionsProperties.store(versionsFile.newWriter(), null)
         }
+    }
+
+    def gitBranch() {
+        def branch = ""
+        def proc = "git rev-parse --abbrev-ref HEAD".execute()
+        proc.in.eachLine { line -> branch = line }
+        proc.err.eachLine { line -> println line }
+        proc.waitFor()
+        branch
     }
 
     static File getVersionsPropertiesFile(Project project) {
