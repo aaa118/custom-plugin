@@ -20,24 +20,24 @@ class VersionPlugin implements Plugin<Project> {
             Properties versionsProperties = loadProperties(versionsFile)
 
             def versionPrefix = "${project.name}"
-            def version = semanticVersionExt.version
+//            version = new SemanticVersion(project, versionParts[0], versionParts[1], versionParts[2],
+//                    isRelease)
+//            def version = semanticVersionExt.version
 
-            final
-            def currentVersionCode = versionsProperties.getProperty("${versionPrefix}_code", 100000)
-            final
-            def currentBuildNumber = versionsProperties.getProperty("${versionPrefix}_build", 1
+            final def currentVersionCode = versionsProperties.getProperty("${versionPrefix}_code", 100000)
+            final def currentBuildNumber = versionsProperties.getProperty("${versionPrefix}_build", 1
                     .toString())
             int buildNumber = currentBuildNumber.toInteger()
 
-            if (currentVersionCode != version.versionCode.toString()) {
-                buildNumber = 1
-            } else {
-                buildNumber += 1
-            }
+//            if (currentVersionCode != version.versionCode.toString()) {
+//                buildNumber = 1
+//            } else {
+//            }
 
+                buildNumber += 1
             String newBuildNumberStr = String.format("%03d", buildNumber)
 
-            versionsProperties.setProperty("${versionPrefix}_code", "${version.versionCode}")
+//            versionsProperties.setProperty("${versionPrefix}_code", "${version.versionCode}")
             versionsProperties.setProperty("${versionPrefix}_build", newBuildNumberStr)
 
             versionsProperties.store(versionsFile.newWriter(), null)
