@@ -33,13 +33,17 @@ class CustomPlugin implements Plugin<Project> {
             final def currentVersionCode = versionsProperties.getProperty("${versionPrefix}_code", "100000")
             final def currentBuildNumber = versionsProperties.getProperty("${versionPrefix}_build", 1.toString())
             int buildNumber = currentBuildNumber.toInteger()
-//            int buildNumber = currentVersionCode.toInteger()
+            int major = currentVersionCode.toInteger() / 100000
+            major += 1
+            int version = major * 100000
+
 
 
             buildNumber += 1
             String newBuildNumberStr = String.format("%03d", buildNumber)
+            String newVersionNumberStr = String.format("%03d", version)
 
-            versionsProperties.setProperty("${versionPrefix}_code", currentVersionCode)
+            versionsProperties.setProperty("${versionPrefix}_code", newVersionNumberStr)
 //            versionsProperties.setProperty("${versionPrefix}_code", "${version.versionCode}")
             versionsProperties.setProperty("${versionPrefix}_build", newBuildNumberStr)
 
