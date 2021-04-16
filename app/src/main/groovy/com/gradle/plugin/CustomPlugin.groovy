@@ -35,7 +35,7 @@ class CustomPlugin implements Plugin<Project> {
             int buildNumber = currentBuildNumber.toInteger()
 
             int version
-            if (gitBranch() == 'master') {
+            if (gitBranch() == 'main') {
                 int major = currentVersionCode.toInteger() / 100000
                 major += 1
                 version = major * 100000
