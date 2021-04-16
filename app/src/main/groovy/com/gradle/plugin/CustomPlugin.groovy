@@ -4,23 +4,26 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class CustomPlugin implements Plugin<Project> {
-
     @Override
     void apply(Project project) {
-//        def showDevicesTask = target.tasks.create("showDevices") << {
-//            def adbExe = target.android.getAdbExe().toString()
-//            println "${adbExe} devices".execute().text
-//        }
-//        showDevicesTask.group = "blogplugin"
-//        showDevicesTask.description = "Runs adb devices command"
+        configureAndroidBase(project)
+
         project.task('hello') {
             doLast {
-                println 'Hello from the GreetingPlugin'
+                println 'Hello'
+            }
+        }
+    }
+
+    private void configureAndroidBase(Project project) {
+        project.android {
+            compileSdkVersion 30
+            buildToolsVersion "30.0.3"
+
+            defaultConfig {
+                minSdkVersion 23
+                targetSdkVersion 30
             }
         }
     }
 }
-//apply plugin: CustomPlugin
-
-// Apply the plugin
-//apply plugin: 'custom'

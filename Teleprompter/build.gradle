@@ -1,11 +1,16 @@
+import com.gradle.plugin.CommonDependenciesExtension
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'testplugin'
+apply plugin: 'custom-plugin'
+//apply plugin: 'app-plug'
 //apply plugin: 'com.google.gms.google-services'
 //apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+//    compileSdkVersion 30
+//    buildToolsVersion "30.0.3"
 
     signingConfigs {
         config {
@@ -18,8 +23,8 @@ android {
 
     defaultConfig {
         applicationId "com.adi.teleprompter"
-        minSdkVersion 23
-        targetSdkVersion 29
+//        minSdkVersion 23
+//        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -48,10 +53,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation project(':testlibrary')
+
+    CommonDependenciesExtension cust = new CommonDependenciesExtension()
+    implementation cust.constraint_layout
+    implementation cust.appcompat
+    implementation cust.junit
+
     implementation 'com.google.firebase:firebase-core:17.4.4'
-    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.recyclerview:recyclerview:1.1.0"

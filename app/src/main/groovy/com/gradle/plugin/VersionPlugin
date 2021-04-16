@@ -1,0 +1,57 @@
+package com.gradle.plugin
+
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+
+class VersionPlugin implements Plugin<Project> {
+
+    private static final def VERSIONS_FILENAME = 'versions.properties'
+
+    @Override
+    void apply(Project target) {
+
+        project.afterEvaluate {
+            final File versionsFile = getVersionsPropertiesFile(project)
+
+            if (!versionsFile.exists()) {
+                versionsFile.createNewFile()
+            }
+
+            Properties versionsProperties = loadProperties(versionsFile)
+
+            def versionPrefix = "${project.name}"
+            def version = semanticVersionExt.version
+
+            final
+            def currentVersionCode = versionsProperties.getProperty("${versionPrefix}_code", 100000)
+            final
+            def currentBuildNumber = versionsProperties.getProperty("${versionPrefix}_build", 1
+                    .toString())
+            int buildNumber = currentBuildNumber.toInteger()
+
+            if (currentVersionCode != version.versionCode.toString()) {
+                buildNumber = 1
+            } else {
+                buildNumber += 1
+            }
+
+            String newBuildNumberStr = String.format("%03d", buildNumber)
+
+            versionsProperties.setProperty("${versionPrefix}_code", "${version.versionCode}")
+            versionsProperties.setProperty("${versionPrefix}_build", newBuildNumberStr)
+
+            versionsProperties.store(versionsFile.newWriter(), null)
+        }
+    }
+
+    static File getVersionsPropertiesFile(Project project) {
+        return project.rootProject.file(VERSIONS_FILENAME)
+    }
+
+    static Properties loadProperties(File file) {
+        Properties properties = new Properties()
+        properties.load(file.newDataInputStream())
+
+        return properties
+    }
+}

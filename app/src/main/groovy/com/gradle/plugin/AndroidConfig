@@ -1,0 +1,20 @@
+package com.gradle.plugin
+
+import org.gradle.api.Project;
+
+class AndroidConfig {
+    final def buildToolsVersion = "30.0.3"
+    final def minSdkVersion = 23
+    final def targetSdkVersion = 30
+    final def compileSdkVersion = 30
+    def proguardPath
+    def lintConfig
+
+    AndroidConfig(Project project) {
+        // Expected proguard path
+        proguardPath = project.rootProject.file('proguard-rules.pro')
+
+        // Expected lint path
+        lintConfig = project.rootProject.file('lint.xml')
+    }
+}

@@ -3,10 +3,15 @@ package com.example.settingsdemo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
+import com.example.testlibrary.TestClass
 
 class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val testClass = TestClass()
+//        testClass.testMethod()
+        testClass.testMethod23()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
         if (savedInstanceState == null) {
