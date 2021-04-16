@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Teleprompter</string>
+    <string name="import_icon">Import Icon</string>
+    <string name="settings">Settings</string>
+    <string name="change_speed">Change Speed</string>
+    <string name="change_text_size">Change Text Size</string>
+    <string name="submit">Submit</string>
+    <string name="all_enter_number">Enter Number</string>
+    <string name="change_color">Change Background Color</string>
+    <string name="load_previous_files">Load Previous Files</string>
+    <string name="add_files">Open Teleprompter</string>
+    <string name="previously_loaded">Previously Loaded</string>
+    <string name="all_ok">Ok</string>
+    <string name="all_cancel">Cancel</string>
+</resources>

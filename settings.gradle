@@ -1,3 +1,4 @@
+include ':Teleprompter'
 include ':setttingsDemo'
 include ':app'
 rootProject.name = "myplugin"

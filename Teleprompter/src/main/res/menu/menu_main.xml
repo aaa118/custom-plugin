@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/icons8_menu_192"
+        app:showAsAction="ifRoom"
+        android:title="@string/settings">
+        <menu>
+            <item android:id="@+id/change_speed"
+                android:title="@string/change_speed" />
+            <item android:id="@+id/change_text_size"
+                android:title="@string/change_text_size" />
+            <item android:id="@+id/change_color"
+                android:title="@string/change_color" />
+        </menu>
+
+    </item>
+</menu>

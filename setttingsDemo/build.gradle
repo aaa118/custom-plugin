@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+apply plugin: 'testplugin'            // Defined by the properties filename
+
 
 android {
     compileSdkVersion 30

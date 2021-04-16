@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1051484405754",
+    "firebase_url": "https://teleprompt-b5e70.firebaseio.com",
+    "project_id": "teleprompt-b5e70",
+    "storage_bucket": "teleprompt-b5e70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051484405754:android:2c39f58662e4650e49ae43",
+        "android_client_info": {
+          "package_name": "com.adi.teleprompter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051484405754-sr9u9orjthrq3mg05h3ftdr4p28n1s5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFXleMYwXV6k_9l9CPQKdlOt7CvJMA7i0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051484405754-sr9u9orjthrq3mg05h3ftdr4p28n1s5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
