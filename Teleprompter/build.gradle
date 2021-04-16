@@ -3,7 +3,7 @@ import com.gradle.plugin.CommonDependenciesExtension
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'testplugin'
-//apply plugin: 'custom-plugin'
+apply plugin: 'custom-plugin'
 //apply plugin: 'com.google.gms.google-services'
 //apply plugin: 'com.google.firebase.crashlytics'
 

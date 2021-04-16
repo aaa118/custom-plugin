@@ -25,7 +25,7 @@ class CustomPlugin implements Plugin<Project> {
 
             Properties versionsProperties = loadProperties(versionsFile)
 //
-//            String versionPrefix = "${project.name}"
+            String versionPrefix = "${project.name}"
 ////            version = new SemanticVersion(project, versionParts[0], versionParts[1], versionParts[2],
 //                    isRelease)
 //            def version = semanticVersionExt.version
@@ -45,7 +45,7 @@ class CustomPlugin implements Plugin<Project> {
 //                }
 //            }
 
-            final def currentVersionCode = versionsProperties.getProperty("setttingsDemo_code", "100000")
+            final def currentVersionCode = versionsProperties.getProperty("${versionPrefix}_code", "100000")
 //            final def currentBuildNumber = props.getProperty("setttingsDemo_build", 1.toString())
 //            final def currentBuildNumber = props.getProperty("${versionPrefix}_build", 1.toString())
 //            int buildNumber = currentBuildNumber.toInteger()
@@ -59,7 +59,7 @@ class CustomPlugin implements Plugin<Project> {
             buildNumber += 1
             String newBuildNumberStr = String.format("%03d", buildNumber)
 
-            versionsProperties.setProperty("setttingsDemo_code", newBuildNumberStr)
+            versionsProperties.setProperty("${versionPrefix}_code", newBuildNumberStr)
 //            versionsProperties.setProperty("${versionPrefix}_code", "${version.versionCode}")
 //            versionsProperties.setProperty("${versionPrefix}_build", newBuildNumberStr)
 
