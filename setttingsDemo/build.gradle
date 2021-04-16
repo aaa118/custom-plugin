@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
 }
 apply plugin: 'testplugin'            // Defined by the properties filename
+apply plugin: 'custom-plugin'            // Defined by the properties filename
 
 
 android {
