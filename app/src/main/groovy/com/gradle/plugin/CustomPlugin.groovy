@@ -1,5 +1,6 @@
 package com.gradle.plugin
 
+import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -25,43 +26,22 @@ class CustomPlugin implements Plugin<Project> {
 
             Properties versionsProperties = loadProperties(versionsFile)
 //
-            String versionPrefix = "${project.name}"
-////            version = new SemanticVersion(project, versionParts[0], versionParts[1], versionParts[2],
+//            version = new SemanticVersion(project, versionParts[0], versionParts[1], versionParts[2],
 //                    isRelease)
-//            def version = semanticVersionExt.version
 
-//            final def currentVersionCode = versionsProperties.getProperty("${versionPrefix}_code", 100000)
-
-//            def Properties props = new Properties()
-//            def propFile = file('../version.properties')
-//
-//            def versionCode
-//            if (propFile.canRead()){
-//                props.load(new FileInputStream(propFile))
-//
-//                if (props!=null && props.containsKey('setttingsDemo_code')) {
-//                    versionCode = props['version.code']
-//
-//                }
-//            }
-
+            String versionPrefix = "${project.name}"
             final def currentVersionCode = versionsProperties.getProperty("${versionPrefix}_code", "100000")
-//            final def currentBuildNumber = props.getProperty("setttingsDemo_build", 1.toString())
-//            final def currentBuildNumber = props.getProperty("${versionPrefix}_build", 1.toString())
-//            int buildNumber = currentBuildNumber.toInteger()
-            int buildNumber = currentVersionCode.toInteger()
+            final def currentBuildNumber = versionsProperties.getProperty("${versionPrefix}_build", 1.toString())
+            int buildNumber = currentBuildNumber.toInteger()
+//            int buildNumber = currentVersionCode.toInteger()
 
-//            if (currentVersionCode != version.versionCode.toString()) {
-//                buildNumber = 1
-//            } else {
-//            }
 
             buildNumber += 1
             String newBuildNumberStr = String.format("%03d", buildNumber)
 
-            versionsProperties.setProperty("${versionPrefix}_code", newBuildNumberStr)
+            versionsProperties.setProperty("${versionPrefix}_code", currentVersionCode)
 //            versionsProperties.setProperty("${versionPrefix}_code", "${version.versionCode}")
-//            versionsProperties.setProperty("${versionPrefix}_build", newBuildNumberStr)
+            versionsProperties.setProperty("${versionPrefix}_build", newBuildNumberStr)
 
             versionsProperties.store(versionsFile.newWriter(), null)
         }
@@ -77,6 +57,19 @@ class CustomPlugin implements Plugin<Project> {
         properties.load(file.newDataInputStream())
 
         return properties
+    }
+
+
+    private def getVersionParts(int[] parts) {
+        if (parts == null || parts.length == 0) {
+            throw new GradleException("Must provide at least one version to semantic version")
+        }
+
+        def major = parts[0]
+        def minor = parts[1] ?: 0
+        def patch = parts[2] ?: 0
+
+        return [major, minor, patch]
     }
 
     private void configureAndroidBase(Project project) {
